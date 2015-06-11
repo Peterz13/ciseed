@@ -23,7 +23,7 @@
 			}
 		</style>
 	</head>
-	<body ng-app="userListApp">
+	<body ng-app="userListApp" ng-controller="userListCtrl">
 		<div class="container">
 		
 			<nav class="navbar navbar-default">
@@ -35,7 +35,8 @@
 			</nav>
 			
 
-			<table class="table"ng-controller="userListCtrl">
+			<legend>User Table</legend>
+			<table class="table">
 				<thead>
 					<tr>
 						<th>Username</th>
@@ -49,6 +50,31 @@
                 </tr>
             	</tbody>
             </table>
+			<div class="row-fluid">
+				<div class="col-md-6">
+				<legend>Add User </legend>
+
+                <form ng-submit="addUser()"  class="form-inline">
+				  <div class="form-group">
+				    <label for="username">Username</label>
+                    <input class="form-control" type="text" ng-model="username" name="username" />
+                   </div>
+                  <div class="form-group">
+				     <label for="password">Password</label>
+                  
+                    <input type="password" class="form-control"  ng-model="password" name="password" />
+                   </div>
+                  <input class='btn btn-success'type="submit" id="submit" value="Submit"/>
+
+                </form>
+
+            </div>
+        </div>
+	        <div class="col-md-6">
+	        	<legend>Randomize User and Password </legend>
+	        	<button class="btn btn-large btn-primary" ng-click="random()">Randomize!</button>
+	        </div>
+			</div>
 			
 		</div>
 	

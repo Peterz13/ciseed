@@ -20,7 +20,7 @@ class User_model extends CI_Model
         
         return $user;
     }
-
+    //retrive all users
     public function getAllUser(){
 
         $query = $this->db->get('Student');
@@ -31,7 +31,8 @@ class User_model extends CI_Model
         }
 
     }
-      public function addUser($data){
+    //add the user
+    public function addUser($data){
 
         $this->db->insert('Student', $data);
 
@@ -46,22 +47,25 @@ class User_model extends CI_Model
 
       public function random(){
 
+        //array of names 
         $namelist = array('Bulah','Kizzie','Shirleen','Russel','Royce','Paulene','Drema','Hyun','Gilbert','Kristeen','Romana','Jacki','Jamal','Ginny','Inger','Teodoro','Erlene','Berry','Natacha','Christie');
         $random = rand(0,20);
         $randompass = rand(0,20);
 
+        //make a random username and password
         $data = array(
             'user_name' => $namelist[$random] . rand(0,2000),
             'password' => sha1($namelist[$random] . $namelist[$randompass])
         );
 
+        //find the length of the database
          $query = $this->db->get('Student');
         if($num_row = $query->num_rows()){
+            //find a random user and update
             $randomUser = rand(1,$num_row);
             $this->db->where('id', $randomUser);
             $this->db->update('Student', $data);    
-            $query = $this->db->get('Student');
-            return $query->result();
+            return TRUE;
         } else {
             return FALSE;
         }

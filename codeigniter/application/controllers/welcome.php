@@ -39,7 +39,7 @@ class Welcome extends CI_Controller {
 
 	}
 
-
+	//use to add the user
 	public function savedata()
 	{
 		$this->load->model('user_model');
@@ -67,16 +67,8 @@ class Welcome extends CI_Controller {
 		public function randomdata()
 	{
 		$this->load->model('user_model');
-		$user = $this->user_model->random();
-		
-		foreach ($user as $data) {
-			$userdata[] = array(
-				'id' => $data->id,
-				'username' => $data->user_name,
-				'password' => $data->password,
-				);
-		}
-		echo json_encode($userdata);
+		$this->user_model->random();
+		$this->getdata();
 
 	}
 

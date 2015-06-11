@@ -6,6 +6,7 @@ class User_model extends CI_Model
     public function __construct ()
     {
         parent::__construct();
+        $this->load->database();
     }
 
     public function getUserByID ($id)
@@ -18,6 +19,17 @@ class User_model extends CI_Model
         );
         
         return $user;
+    }
+
+    public function getAllUser(){
+
+        $query = $this->db->get('Student');
+        if($query->num_rows()){
+            return $query->result();
+        } else {
+            return FALSE;
+        }
+
     }
 }
 

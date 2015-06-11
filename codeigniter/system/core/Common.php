@@ -253,8 +253,9 @@ if ( ! function_exists('get_config'))
 				}
 			}
 		}
-
-		return $_config[0] =& $config;
+		//quick fix to remove error
+		$_config[0] =& $config;
+		return $_config[0]; 
 	}
 }
 

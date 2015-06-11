@@ -21,6 +21,24 @@ class Welcome extends CI_Controller {
 	{
 		$this->load->view('welcome_message');
 	}
+
+	public function getdata()
+	{
+		$this->load->model('user_model');
+		$userdata = array();
+		$user = $this->user_model->getAllUser();
+
+		foreach ($user as $data) {
+			$userdata[] = array(
+				'id' => $data->id,
+				'username' => $data->user_name,
+				'password' => $data->password,
+				);
+		}
+		echo json_encode($userdata);
+
+	}
+	
 }
 
 /* End of file welcome.php */
